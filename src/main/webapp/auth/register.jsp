@@ -13,7 +13,7 @@ pageEncoding="ISO-8859-1"%>
 	</head>
 	<body>
 		<div>
-			<form>
+			<form action="register" enctype="multipart/form-data" method="post">
 				<div class="form-control">
 					<label for="first_name">First Name:</label>
 					<input class="form-input" type="text" name="first_name" />
