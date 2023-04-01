@@ -12,9 +12,9 @@ pageEncoding="ISO-8859-1"%>
 		<link rel="stylesheet" href="register.css" />
 	</head>
 	<body>
-		<div>
+		<div class="container">
 			<form action="register" enctype="multipart/form-data" method="post">
-			<div class="form-control">
+				<div class="form-control">
 					<label for="user_name">User Name:</label>
 					<input class="form-input" type="text" name="user_name" />
 				</div>
@@ -30,7 +30,7 @@ pageEncoding="ISO-8859-1"%>
 					<label for="image">Profile Image</label>
 					<input
 						id="image"
-						class="form-input"
+						class=""
 						type="file"
 						name="image"
 						accept="image/png, image/jpeg"
