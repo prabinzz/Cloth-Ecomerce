@@ -14,6 +14,10 @@ pageEncoding="ISO-8859-1"%>
 	<body>
 		<div>
 			<form action="register" enctype="multipart/form-data" method="post">
+			<div class="form-control">
+					<label for="user_name">User Name:</label>
+					<input class="form-input" type="text" name="user_name" />
+				</div>
 				<div class="form-control">
 					<label for="first_name">First Name:</label>
 					<input class="form-input" type="text" name="first_name" />
@@ -33,7 +37,19 @@ pageEncoding="ISO-8859-1"%>
 					/>
 				</div>
 				<div class="form-control">
-					<label for="password">Password</label>
+					<label for="email">Email:</label>
+					<input class="form-input" type="email" name="email" />
+				</div>
+				<div class="form-control">
+					<label for="address">Address:</label>
+					<input class="form-input" type="text" name="address" />
+				</div>
+				<div class="form-control">
+					<label for="phone">Phone:</label>
+					<input class="form-input" type="text" name="phone" />
+				</div>
+				<div class="form-control">
+					<label for="password">Password:</label>
 					<input class="form-input" type="password" name="password" />
 				</div>
 				<div class="from-control form-buttons">

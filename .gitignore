@@ -1,5 +1,4 @@
 /build/
 /src/main/webapp/img/** 
-!/src/main/webapp/img/**/*
 !/src/main/webapp/img/**/.gitkeep
-
+src\main\webapp\WEB-INF\lib
