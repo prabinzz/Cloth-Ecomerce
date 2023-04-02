@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import database.Auth;
+import helper.Encryption;
 
 
 @SuppressWarnings("serial")
@@ -26,6 +27,7 @@ public class Register extends HttpServlet {
 		String last_name = request.getParameter("last_name");
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
+		password = Encryption.encrypt(password);
 		String address = request.getParameter("address");
 		String phone = request.getParameter("phone");
 		String image_url = "";
@@ -49,7 +51,7 @@ public class Register extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		authModel.register(user_name, first_name, last_name, address, email, password, phone,image_url);
+		authModel.register(user_name, first_name, last_name, email, password, address, phone,image_url);
 		
 	}
 

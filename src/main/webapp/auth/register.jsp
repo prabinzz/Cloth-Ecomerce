@@ -16,15 +16,15 @@ pageEncoding="ISO-8859-1"%>
 			<form action="register" enctype="multipart/form-data" method="post">
 				<div class="form-control">
 					<label for="user_name">User Name:</label>
-					<input class="form-input" type="text" name="user_name" />
+					<input class="form-input" type="text" name="user_name" required />
 				</div>
 				<div class="form-control">
 					<label for="first_name">First Name:</label>
-					<input class="form-input" type="text" name="first_name" />
+					<input class="form-input" type="text" name="first_name" required/>
 				</div>
 				<div class="form-control">
 					<label for="last_name">Last Name:</label>
-					<input class="form-input" type="text" name="last_name" />
+					<input class="form-input" type="text" name="last_name" required />
 				</div>
 				<div class="form-control">
 					<label for="image">Profile Image</label>
@@ -34,23 +34,24 @@ pageEncoding="ISO-8859-1"%>
 						type="file"
 						name="image"
 						accept="image/png, image/jpeg"
+						required
 					/>
 				</div>
 				<div class="form-control">
 					<label for="email">Email:</label>
-					<input class="form-input" type="email" name="email" />
+					<input class="form-input" type="email" name="email" required />
 				</div>
 				<div class="form-control">
 					<label for="address">Address:</label>
-					<input class="form-input" type="text" name="address" />
+					<input class="form-input" type="text" name="address" required />
 				</div>
 				<div class="form-control">
 					<label for="phone">Phone:</label>
-					<input class="form-input" type="text" name="phone" />
+					<input class="form-input" type="text" name="phone"  required />
 				</div>
 				<div class="form-control">
 					<label for="password">Password:</label>
-					<input class="form-input" type="password" name="password" />
+					<input class="form-input" type="password" name="password" required />
 				</div>
 				<div class="from-control form-buttons">
 					<input class="btn btn-primary" type="submit" />
