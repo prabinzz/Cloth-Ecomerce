@@ -15,8 +15,17 @@ pageEncoding="ISO-8859-1"%>
 		<div>
 			<form action="login" method="post">
 				<div class="form-control">
+				<% 
+				Object errorMessage = session.getAttribute("errorMessage");
+				if(errorMessage != null){
+					out.print(errorMessage);
+					session.removeAttribute("errorMessage"); 					
+				}
+				%>
+				</div>
+				<div class="form-control">
 					<label for="username">Username:</label>
-					<input class="form-input" type="text" name="username" />
+					<input class="form-input" type="text" name="user_name" />
 				</div>
 				<div class="form-control">
 					<label for="password">Password:</label>

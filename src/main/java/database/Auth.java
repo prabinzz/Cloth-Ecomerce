@@ -7,15 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Auth extends Database {
-	public Auth() {
-		super();
-	}
-	
 	public int register(String user_name, String first_name, String last_name, String email, 
 			String password, String address , String phone, String image ) {
 		String query = "insert into user values(?,?,?,?,?,?,?,?)";
 		try {
-			PreparedStatement pst = conn.prepareStatement(query);
+			PreparedStatement pst = conn().prepareStatement(query);
 			pst.setString(1, user_name);
 			pst.setString(2, first_name);
 			pst.setString(3, last_name);
@@ -28,8 +24,22 @@ public class Auth extends Database {
 			int row = pst.executeUpdate();
 			return row;
 		}catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 		return 0;
+	}
+
+	public ResultSet getUserWithUserName(String user_name) {
+		String query = "select * from user where user_name=?";
+		ResultSet user = null;
+		try {
+			PreparedStatement pst = conn().prepareStatement(query);
+			pst.setString(1, user_name);
+			user = pst.executeQuery();
+			return user;				
+		}catch (Exception e) {
+			e.printStackTrace();
+			return user;
+		}
 	}
 }
