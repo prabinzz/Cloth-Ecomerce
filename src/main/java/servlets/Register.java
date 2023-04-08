@@ -15,12 +15,20 @@ import helper.Encryption;
 
 
 @SuppressWarnings("serial")
-@WebServlet("/auth/register")
+@WebServlet("/register")
 @MultipartConfig(fileSizeThreshold=1024*1024*10,  // 10 MB 
 maxFileSize=1024*1024*50,       // 50 MB
 maxRequestSize=1024*1024*100)    // 100 MB
 public class Register extends HttpServlet {
-	public void service(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException{
+		try {
+			request.getRequestDispatcher("views/register.jsp").forward(request, response);
+		} catch (ServletException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		Auth authModel = new Auth();
 		String user_name = request.getParameter("user_name");
 		String first_name = request.getParameter("first_name");
