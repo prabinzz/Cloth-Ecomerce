@@ -1,8 +1,6 @@
 package controllers;
 
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,52 +11,45 @@ import javax.servlet.http.HttpSession;
 
 import database.Auth;
 import helper.Encryption;
-
+import model.User;
 
 @SuppressWarnings("serial")
 @WebServlet("/login")
 public class Login extends HttpServlet {
-	public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		try {
 			request.getRequestDispatcher("views/login.jsp").forward(request, response);
 		} catch (ServletException | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
+
 	}
-	
-	public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException{
+
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		Auth authModel = new Auth();
 		HttpSession session = request.getSession(true);
 		String base_url = request.getContextPath();
-		String login_url = base_url+"/login";
+		String login_url = base_url + "/login";
 		String user_name = request.getParameter("user_name");
 		String password = request.getParameter("password");
-		ResultSet user = authModel.getUserWithUserName(user_name);
-		try {
-			if(user.next()) {
-				String saved_password = user.getString("password");
-				// match password with hassed passwrod
-				if(Encryption.matches(password, saved_password)) {
-					session.setAttribute("loggedInUser", user.getString("user_name"));
-					response.sendRedirect(base_url);
-				}else {
-					session.setAttribute("errorMessage", "Password Didn't match");
-					response.sendRedirect(login_url);
-				}
-			}else {
-				// user not found
-				session.setAttribute("errorMessage", "User Not Found");
+		User user = authModel.getUserWithUserName(user_name);
+		if (user != null) {
+			String saved_password = user.getPassword();
+			// match password with hassed passwrod
+			if (Encryption.matches(password, saved_password)) {
+				session.setAttribute("loggedInUser", user);
+				response.sendRedirect(base_url);
+			} else {
+				session.setAttribute("errorMessage", "Password Didn't match");
 				response.sendRedirect(login_url);
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} else {
+			// user not found
+			session.setAttribute("errorMessage", "User Not Found");
+			response.sendRedirect(login_url);
 		}
-		
+
 	}
 
 }
-
-

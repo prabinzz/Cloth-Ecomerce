@@ -1,45 +1,60 @@
 package database;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+
+import model.User;
 
 public class Auth extends Database {
-	public int register(String user_name, String first_name, String last_name, String email, 
-			String password, String address , String phone, String image ) {
+	public int register(User user) {
 		String query = "insert into user values(?,?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement pst = conn().prepareStatement(query);
-			pst.setString(1, user_name);
-			pst.setString(2, first_name);
-			pst.setString(3, last_name);
-			pst.setString(4, email);
-			pst.setString(5, password);
-			pst.setString(6, address);
-			pst.setString(7, phone);
-			pst.setString(8, image);
-			
+			pst.setString(1, user.getUserName());
+			pst.setString(2, user.getFirstName());
+			pst.setString(3, user.getLastName());
+			pst.setString(4, user.getEmail());
+			pst.setString(5, user.getPassword());
+			pst.setString(6, user.getAddress());
+			pst.setString(7, user.getPhone());
+			pst.setString(8, user.getImageUrl());
+
 			int row = pst.executeUpdate();
 			return row;
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return 0;
 	}
 
-	public ResultSet getUserWithUserName(String user_name) {
+	public User getUserWithUserName(String userName) {
 		String query = "select * from user where user_name=?";
 		ResultSet user = null;
 		try {
 			PreparedStatement pst = conn().prepareStatement(query);
-			pst.setString(1, user_name);
+			pst.setString(1, userName);
 			user = pst.executeQuery();
-			return user;				
-		}catch (Exception e) {
+			if (user.next()) {
+				User newUser = new User(user.getString(1), user.getString(2), user.getString(3), user.getString(4),
+						user.getString(5), user.getString(6), user.getString(7), user.getString(8));
+				return newUser;
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
-			return user;
+			return null;
+		}
+		return null;
+	}
+
+	public boolean checkAvailableUser(String userName) {
+		String query = "select * from user where user_name=?";
+		try {
+			PreparedStatement pst = conn().prepareStatement(query);
+			pst.setString(1, userName);
+			return pst.executeQuery().next();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
 		}
 	}
 }

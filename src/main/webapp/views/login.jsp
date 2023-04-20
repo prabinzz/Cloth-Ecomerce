@@ -7,10 +7,10 @@ pageEncoding="ISO-8859-1"%>
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Login</title>
-		<link rel="stylesheet" href="css/reset.css" />
-		<link rel="stylesheet" href="css/style.css" />
-		<link rel="stylesheet" href="css/login.css" />
+		<title>Login Form</title>
+		<link rel="stylesheet" href="/css/reset.css" />
+		<link rel="stylesheet" href="/css/style.css" />
+		<link rel="stylesheet" href="/css/login.css" />
 	</head>
 	<body>
 		<div>
@@ -21,13 +21,6 @@ pageEncoding="ISO-8859-1"%>
 					${sessionScope.errorMessage}
 					<c:remove var="errorMessage" scope="session"/>
 				</c:if>
-				<%-- <% 
-				Object errorMessage = session.getAttribute("errorMessage");
-				if(errorMessage != null){
-					out.print(errorMessage);
-					session.removeAttribute("errorMessage"); 					
-				}
-				%> --%>
 				</div>
 				</div>
 				<div class="form-control">

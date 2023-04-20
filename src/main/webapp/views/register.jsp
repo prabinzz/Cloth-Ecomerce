@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -7,9 +8,9 @@ pageEncoding="ISO-8859-1"%>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Register</title>
-		<link rel="stylesheet" href="css/reset.css" />
-		<link rel="stylesheet" href="css/style.css" />
-		<link rel="stylesheet" href="css/register.css" />
+		<link rel="stylesheet" href="/css/reset.css" />
+		<link rel="stylesheet" href="/css/style.css" />
+		<link rel="stylesheet" href="/css/register.css" />
 	</head>
 	<body>
 		<div class="container">
@@ -52,6 +53,14 @@ pageEncoding="ISO-8859-1"%>
 				<div class="form-control">
 					<label for="password">Password:</label>
 					<input class="form-input" type="password" name="password" required />
+				</div>
+				<div class="form-control">
+				<div class="error-message">
+				<c:if test="${ sessionScope.errorMessage != null }">
+					${sessionScope.errorMessage}
+					<c:remove var="errorMessage" scope="session"/>
+				</c:if>
+				</div>
 				</div>
 				<div class="from-control form-buttons">
 					<input class="btn btn-primary" type="submit" />

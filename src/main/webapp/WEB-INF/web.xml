@@ -13,5 +13,5 @@
     <param-name>profileImagePath</param-name>
     <param-value>C:\\Users\\prabi\\eclipse-workspace\\Ecom Cloth Store\\src\main\\webapp\\img\\profile\\</param-value>
 </context-param>
-  
+
 </web-app>
