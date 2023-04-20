@@ -17,8 +17,9 @@ pageEncoding="ISO-8859-1"%>
 			<form action="login" method="post">
 				<div class="form-control">
 				<div class="error-message">
-				<c:if test="${ 'a' == 'b' }">
+				<c:if test="${ sessionScope.errorMessage != null }">
 					${sessionScope.errorMessage}
+					<c:remove var="errorMessage" scope="session"/>
 				</c:if>
 				<%-- <% 
 				Object errorMessage = session.getAttribute("errorMessage");
