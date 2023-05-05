@@ -29,8 +29,8 @@
 		color: white;
 	}
 	.control-icon{
-		width: 20px;
-		height: 20px;
+		width:30px;
+		height: 30px;
 		border-radius: 999px;
 		padding: .4rem;
 		border: 1px solid var(--accent-color);

@@ -80,12 +80,5 @@
 </servlet-mapping>
 
 <!-- Filters  -->
-<filter>
-    <filter-name>LoggedInUser</filter-name>
-    <filter-class>filter.LoginFilter</filter-class>
-</filter>
-<filter-mapping>
-    <filter-name>LoggedInUser</filter-name>
-    <url-pattern>/login</url-pattern>
-</filter-mapping>
+
 </web-app>

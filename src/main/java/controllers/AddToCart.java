@@ -17,21 +17,18 @@ public class AddToCart extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
-		if (!session.getAttribute("loggedInUserName").equals(null)) {
-			request.getParameter("ProductId");
+		String loggedInUserName = (String) session.getAttribute("loggedInUserName");
+		if (loggedInUserName != null) {
+			int productId = Integer.parseInt(request.getParameter("productId"));
 			ArrayList<Integer> cart;
-			if (session.getAttribute("cart").equals(null)) {
+			if (session.getAttribute("cart") == null) {
 				cart = new ArrayList<Integer>();
 			} else {
 				cart = (ArrayList<Integer>) session.getAttribute("cart");
 			}
-			cart.add(Integer.parseInt(request.getParameter("productId")));
+			cart.add(productId);
+			session.setAttribute("cart", cart);
 		}
 		response.sendRedirect("/");
 	}

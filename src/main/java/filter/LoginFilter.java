@@ -28,11 +28,13 @@ public class LoginFilter implements Filter {
 		}
 	}
 
-	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
+	public void destroy() {
+
 	}
 
-	public void destroy() {
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {
+		// TODO Auto-generated method stub
 
 	}
 

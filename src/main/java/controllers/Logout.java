@@ -8,9 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- * Servlet implementation class Logout
- */
 public class Logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -25,8 +22,7 @@ public class Logout extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession(true);
-		session.removeAttribute("loggedInUserName");
-		session.removeAttribute("loggedInUserImage");
+		session.invalidate();
 		response.sendRedirect("/");
 	}
 
