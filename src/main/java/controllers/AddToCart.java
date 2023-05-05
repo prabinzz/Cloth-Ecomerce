@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,29 +12,28 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class Logout
  */
-public class Logout extends HttpServlet {
+public class AddToCart extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public Logout() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		HttpSession session = request.getSession(true);
-		session.removeAttribute("loggedInUserName");
-		session.removeAttribute("loggedInUserImage");
-		response.sendRedirect("/");
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		HttpSession session = request.getSession(true);
+		if (!session.getAttribute("loggedInUserName").equals(null)) {
+			request.getParameter("ProductId");
+			ArrayList<Integer> cart;
+			if (session.getAttribute("cart").equals(null)) {
+				cart = new ArrayList<Integer>();
+			} else {
+				cart = (ArrayList<Integer>) session.getAttribute("cart");
+			}
+			cart.add(Integer.parseInt(request.getParameter("productId")));
+		}
+		response.sendRedirect("/");
 	}
 
 }

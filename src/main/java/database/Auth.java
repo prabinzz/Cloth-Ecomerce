@@ -2,6 +2,8 @@ package database;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.User;
 
@@ -37,7 +39,7 @@ public class Auth extends Database {
 			user = pst.executeQuery();
 			if (user.next()) {
 				User newUser = new User(user.getString(1), user.getString(2), user.getString(3), user.getString(4),
-						user.getString(5), user.getString(6), user.getString(7), user.getString(8), user.getString(8));
+						user.getString(5), user.getString(6), user.getString(7), user.getString(8), user.getString(9));
 				return newUser;
 			}
 		} catch (Exception e) {
@@ -58,4 +60,66 @@ public class Auth extends Database {
 			return false;
 		}
 	}
+
+	public int updateUser(User user) {
+		String query = "update user set ";
+		List<Object> values = new ArrayList<Object>();
+
+		// Build the SET clause dynamically based on which fields are not null
+		if (user.getAccountType() != null) {
+			query += "account_type=?, ";
+			values.add(user.getAccountType());
+		}
+		if (user.getFirstName() != null) {
+			query += "first_name=?, ";
+			values.add(user.getFirstName());
+		}
+		if (user.getLastName() != null) {
+			query += "last_name=?, ";
+			values.add(user.getLastName());
+		}
+		if (user.getEmail() != null) {
+			query += "email=?, ";
+			values.add(user.getEmail());
+		}
+		if (user.getPassword() != null) {
+			query += "password=?, ";
+			values.add(user.getPassword());
+		}
+		if (user.getAddress() != null) {
+			query += "address=?, ";
+			values.add(user.getAddress());
+		}
+		if (user.getPhone() != null) {
+			query += "phone=?, ";
+			values.add(user.getPhone());
+		}
+		if (user.getImageUrl() != null) {
+			query += "image=?, ";
+			values.add(user.getImageUrl());
+		}
+
+		// Remove the trailing comma and space from the SET clause
+		query = query.substring(0, query.length() - 2);
+
+		// Add the WHERE clause to update only the specified user
+		query += " where user_name=?";
+
+		try {
+			PreparedStatement pst = conn().prepareStatement(query);
+
+			// Set the parameter values for the UPDATE statement
+			for (int i = 0; i < values.size(); i++) {
+				pst.setObject(i + 1, values.get(i));
+			}
+			pst.setString(values.size() + 1, user.getUserName());
+
+			int row = pst.executeUpdate();
+			return row;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
 }

@@ -23,6 +23,16 @@ pageEncoding="ISO-8859-1"%>
 			<div class="container mx-auto">
 				<form action="update-user" enctype="multipart/form-data" method="post">
 					<h2>Update Profile</h2>
+					<div class="form-control">
+							<label for="first_name">User Name:</label>
+							<input
+								class="form-input"
+								type="text"
+								name="user_name"
+								value="<%= updateUser.getUserName() %>"
+								required
+							/>
+						</div>
 					<div class="form-group">
 						<div class="form-control">
 							<label for="first_name">First Name:</label>
@@ -63,13 +73,11 @@ pageEncoding="ISO-8859-1"%>
 						<input class="form-input" type="text" name="phone" required value="<%= updateUser.getPhone() %>" />
 					</div>
 					<div class="form-control">
-						<label for="password">Password:</label>
+						<label for="password">New Password:</label>
 						<input
 							class="form-input"
 							type="password"
 							name="password"
-							required
-							value="<%= updateUser.getPassword() %>"
 						/>
 					</div>
 					<div class="form-control">

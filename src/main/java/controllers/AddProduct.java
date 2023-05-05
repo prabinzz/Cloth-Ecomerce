@@ -9,16 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import database.Auth;
-import helper.Encryption;
+import database.ProductModel;
 import helper.HandleImage;
-import model.User;
+import model.Product;
 
 @SuppressWarnings("serial")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 10, // 10 MB
 		maxFileSize = 1024 * 1024 * 50, // 50 MB
 		maxRequestSize = 1024 * 1024 * 100) // 100 MB
-public class Register extends HttpServlet {
+public class AddProduct extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		try {
 			request.getRequestDispatcher("/views/register.jsp").forward(request, response);
@@ -30,39 +29,36 @@ public class Register extends HttpServlet {
 	}
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		Auth authModel = new Auth();
-		User newUser = new User();
+		ProductModel productModel = new ProductModel();
+		Product NewProduct = new Product();
 		HttpSession session = request.getSession(true);
 		String error = "";
-		String password = request.getParameter("password");
-		password = Encryption.encrypt(password);
 
-		newUser.setUserName(request.getParameter("user_name"));
-		newUser.setFirstName(request.getParameter("first_name"));
-		newUser.setLastName(request.getParameter("last_name"));
-		newUser.setAccountType("user");
-		newUser.setEmail(request.getParameter("email"));
-		newUser.setPassword(password);
-		newUser.setAddress(request.getParameter("address"));
-		newUser.setPhone(request.getParameter("phone"));
+		NewProduct.setName(request.getParameter("name"));
+		NewProduct.setDescription(request.getParameter("description"));
+		NewProduct.setBrand(request.getParameter("brand"));
+		NewProduct.setSize(request.getParameter("size"));
+		NewProduct.setQuantity(Integer.parseInt(request.getParameter("quantity")));
+		NewProduct.setPrice(Double.parseDouble(request.getParameter("price")));
+		NewProduct.setCategory(request.getParameter("category"));
+		NewProduct.setGender(request.getParameter("gender"));
+
 		try {
-			newUser.setImageUrl(HandleImage.handleImageUpload(request.getPart("image"),
-					getServletContext().getInitParameter("imagePath"), "profile/" + newUser.getUserName()));
+			NewProduct.setImage(HandleImage.handleImageUpload(request.getPart("image"),
+					getServletContext().getInitParameter("imagePath"), "products/" + NewProduct.getName()));
 
-			System.out.println(newUser.getImageUrl());
+			System.out.println(NewProduct.getImage());
 		} catch (IOException | ServletException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		if (authModel.checkAvailableUser(newUser.getUserName())) {
-			error = "User Already Exist";
 		}
 
 		if (error != "") {
 			session.setAttribute("errorMessage", error);
 			response.sendRedirect(request.getContextPath() + "/register");
 		}
-		authModel.register(newUser);
+		productModel.addProduct(NewProduct);
+		response.sendRedirect("/dashboard?page=add-product");
 
 	}
 

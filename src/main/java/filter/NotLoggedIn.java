@@ -15,16 +15,15 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet Filter implementation class LoginFilter
  */
-public class LoginFilter implements Filter {
+public class NotLoggedIn implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpSession session = ((HttpServletRequest) request).getSession();
-		if (session.getAttribute("loggedInUserName") != null) {
-			System.out.print(session.getAttribute("loggedInUserName"));
-			((HttpServletResponse) response).sendRedirect("/");
-		} else {
+		if (session.getAttribute("loggedInUserName") == null) {
 			chain.doFilter(request, response);
+		} else {
+			((HttpServletResponse) response).sendRedirect("/login");
 		}
 	}
 
