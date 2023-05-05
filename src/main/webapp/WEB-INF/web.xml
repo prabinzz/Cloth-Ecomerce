@@ -10,8 +10,8 @@
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
   <context-param>
-    <param-name>profileImagePath</param-name>
-    <param-value>C:\\Users\\prabi\\eclipse-workspace\\Ecom Cloth Store\\src\main\\webapp\\img\\profile\\</param-value>
+    <param-name>imagePath</param-name>
+    <param-value>C:\\Users\\prabi\\eclipse-workspace\\Ecom Cloth Store\\src\main\\webapp\\img\\</param-value>
 </context-param>
 
 </web-app>

@@ -4,17 +4,19 @@ public class User {
 	private String firstName;
 	private String LastName;
 	private String userName;
+	private String accountType;
 	private String email;
 	private String password;
 	private String address;
 	private String phone;
 	private String imageUrl;
 
-	public User(String userName, String firstName, String lastName, String email, String password, String address,
-			String phone, String imageUrl) {
+	public User(String userName, String accountType, String firstName, String lastName, String email, String password,
+			String address, String phone, String imageUrl) {
 		this.firstName = firstName;
 		this.LastName = lastName;
 		this.userName = userName;
+		this.accountType = accountType;
 		this.email = email;
 		this.password = password;
 		this.address = address;
@@ -85,7 +87,19 @@ public class User {
 		return imageUrl;
 	}
 
+	public String getAccountType() {
+		return accountType;
+	}
+
+	public void setAccountType(String accountType) {
+		this.accountType = accountType;
+	}
+
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public String getFullName() {
+		return this.firstName + " " + this.LastName;
 	}
 }

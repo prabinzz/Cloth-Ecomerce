@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class Database {
 	public static Connection conn() {
-		String url = "jdbc:mysql://aws.connect.psdb.cloud/cloth_ecom?sslMode=VERIFY_IDENTITY";
-		String username = "mo7ldcmdqpktdaahy8ex";
-		String password = "pscale_pw_n1U1KYrqaDyEoJ2umjMnzLtqWono5YYgzcfsHeQM7Sk";
+		String url = "jdbc:mysql://localhost:3306/cloth_ecom";
+		String username = "root";
+		String password = "";
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			return DriverManager.getConnection(url, username, password);

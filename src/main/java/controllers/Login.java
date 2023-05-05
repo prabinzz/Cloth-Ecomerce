@@ -29,8 +29,6 @@ public class Login extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		Auth authModel = new Auth();
 		HttpSession session = request.getSession(true);
-		String base_url = request.getContextPath();
-		String login_url = base_url + "/login";
 		String user_name = request.getParameter("user_name");
 		String password = request.getParameter("password");
 		User user = authModel.getUserWithUserName(user_name);
@@ -38,16 +36,17 @@ public class Login extends HttpServlet {
 			String saved_password = user.getPassword();
 			// match password with hassed passwrod
 			if (Encryption.matches(password, saved_password)) {
-				session.setAttribute("loggedInUser", user);
-				response.sendRedirect(base_url);
+				session.setAttribute("loggedInUserName", user.getUserName());
+				session.setAttribute("loggedInUserImage", user.getImageUrl());
+				response.sendRedirect("/");
 			} else {
 				session.setAttribute("errorMessage", "Password Didn't match");
-				response.sendRedirect(login_url);
+				response.sendRedirect("/login");
 			}
 		} else {
 			// user not found
 			session.setAttribute("errorMessage", "User Not Found");
-			response.sendRedirect(login_url);
+			response.sendRedirect("/login");
 		}
 
 	}

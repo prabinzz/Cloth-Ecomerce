@@ -9,17 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 
 import database.Auth;
 import helper.Encryption;
+import helper.HandleImage;
 import model.User;
 
 @SuppressWarnings("serial")
+@WebServlet("/register")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 10, // 10 MB
 		maxFileSize = 1024 * 1024 * 50, // 50 MB
 		maxRequestSize = 1024 * 1024 * 100) // 100 MB
-@WebServlet("/register")
 public class Register extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		try {
@@ -42,29 +42,18 @@ public class Register extends HttpServlet {
 		newUser.setUserName(request.getParameter("user_name"));
 		newUser.setFirstName(request.getParameter("first_name"));
 		newUser.setLastName(request.getParameter("last_name"));
+		newUser.setAccountType("user");
 		newUser.setEmail(request.getParameter("email"));
 		newUser.setPassword(password);
 		newUser.setAddress(request.getParameter("address"));
-		newUser.setUserName(request.getParameter("user_name"));
-
+		newUser.setPhone(request.getParameter("phone"));
 		try {
-			// Extract file extension from filename
-			Part image = request.getPart("image");
-			String profileImagePath = getServletContext().getInitParameter("profileImagePath"); // profile images path
-			String fileName = image.getSubmittedFileName(); // uploaded file name
+			newUser.setImageUrl(HandleImage.HandleImageUpload(request.getPart("image"),
+					getServletContext().getInitParameter("imagePath"), "profile/" + newUser.getUserName()));
 
-			// get file extenction
-			String fileExtension = "";
-			int i = fileName.lastIndexOf('.');
-			if (i > 0) {
-				fileExtension = fileName.substring(i + 1);
-			}
-			String destinationPath = String.format("%s%s.%s", profileImagePath, newUser.getUserName(), fileExtension);
-			newUser.setImageUrl(String.format("/img/profile/%s.%s", newUser.getUserName(), fileExtension));
-			image.write(destinationPath);
+			System.out.println(newUser.getImageUrl());
 		} catch (IOException | ServletException e) {
 			// TODO Auto-generated catch block
-			error = "Error while uploading image";
 			e.printStackTrace();
 		}
 		if (authModel.checkAvailableUser(newUser.getUserName())) {

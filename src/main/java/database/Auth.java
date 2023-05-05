@@ -7,17 +7,18 @@ import model.User;
 
 public class Auth extends Database {
 	public int register(User user) {
-		String query = "insert into user values(?,?,?,?,?,?,?,?)";
+		String query = "insert into user values(?,?,?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement pst = conn().prepareStatement(query);
 			pst.setString(1, user.getUserName());
-			pst.setString(2, user.getFirstName());
-			pst.setString(3, user.getLastName());
-			pst.setString(4, user.getEmail());
-			pst.setString(5, user.getPassword());
-			pst.setString(6, user.getAddress());
-			pst.setString(7, user.getPhone());
-			pst.setString(8, user.getImageUrl());
+			pst.setString(2, user.getAccountType());
+			pst.setString(3, user.getFirstName());
+			pst.setString(4, user.getLastName());
+			pst.setString(5, user.getEmail());
+			pst.setString(6, user.getPassword());
+			pst.setString(7, user.getAddress());
+			pst.setString(8, user.getPhone());
+			pst.setString(9, user.getImageUrl());
 
 			int row = pst.executeUpdate();
 			return row;
@@ -36,7 +37,7 @@ public class Auth extends Database {
 			user = pst.executeQuery();
 			if (user.next()) {
 				User newUser = new User(user.getString(1), user.getString(2), user.getString(3), user.getString(4),
-						user.getString(5), user.getString(6), user.getString(7), user.getString(8));
+						user.getString(5), user.getString(6), user.getString(7), user.getString(8), user.getString(8));
 				return newUser;
 			}
 		} catch (Exception e) {

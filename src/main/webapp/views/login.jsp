@@ -8,13 +8,13 @@ pageEncoding="ISO-8859-1"%>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Login Form</title>
-		<link rel="stylesheet" href="/css/reset.css" />
-		<link rel="stylesheet" href="/css/style.css" />
+		<%@include file="/views/components/globelHead.jsp" %>
 		<link rel="stylesheet" href="/css/login.css" />
 	</head>
 	<body>
-		<div>
+		<div class="login-container">
 			<form action="login" method="post">
+			<h2> Login Form </h2>
 				<div class="form-control">
 				<div class="error-message">
 				<c:if test="${ sessionScope.errorMessage != null }">
@@ -30,6 +30,9 @@ pageEncoding="ISO-8859-1"%>
 				<div class="form-control">
 					<label for="password">Password:</label>
 					<input class="form-input" type="password" name="password" />
+				</div>
+				<div class="form-control">
+					Don't have an account? <a href="/register">Create an account</a>
 				</div>
 				<div class="form-control form-buttons">
 					<input class="btn btn-primary" type="submit" value="Login" />
