@@ -8,15 +8,24 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/formStyle.css" />
+<style>
+	.form-control{
+		margin-bottom: .6rem;
+	}
+</style>
+
 </head>
 <body>
- <div class="container mx-auto">
+ <div class=" w-500">
  <h1>Edit Product</h1>
  <% 
  	String id = request.getParameter("id");
  	if(id == null){
  %>
- 	<div>ID not Found. </div>
+ 	<h2>Product ID not provided. </h2>
+ 	<p >Please go to view pooduct page and click on edit </p>
+ 	<h3 >Or</h3>
+ 	<p>Provide Valid Product ID in the input box below</p>
  <% } else{ 
 	 ProductModel productModel = new ProductModel();
 	 Product product = productModel.getProductById(id);
@@ -70,7 +79,7 @@
 	    <img id="preview" src="<%=product.getImage() %>" alt="Preview Image" style="display:none; max-width:100px; max-height:100px;" />
 	</div>
 	<div class="form-control">
-		<input class="form-input" type="submit" value="Add Product" />
+		<input class="form-input btn btn-primary" type="submit" value="Add Product" />
 	</div>
 </form>
 	<%} %>

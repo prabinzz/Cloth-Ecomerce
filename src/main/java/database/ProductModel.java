@@ -112,4 +112,32 @@ public class ProductModel extends Database {
 		return null;
 	}
 
+	public ArrayList<Product> searchProduct(String searchText) {
+		ArrayList<Product> productList = new ArrayList<>();
+		String query = "SELECT * FROM products WHERE name LIKE '%" + searchText + "%' OR brand LIKE '%" + searchText
+				+ "%'";
+
+		try (Statement stmt = conn().createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+			while (rs.next()) {
+				Product product = new Product();
+				product.setId(rs.getInt("id"));
+				product.setName(rs.getString("name"));
+				product.setBrand(rs.getString("brand"));
+				product.setDescription(rs.getString("description"));
+				product.setSize(rs.getString("size"));
+				product.setQuantity(rs.getInt("quantity"));
+				product.setPrice(rs.getDouble("price"));
+				product.setCategory(rs.getString("category"));
+				product.setGender(rs.getString("gender"));
+				product.setImage(rs.getString("image"));
+
+				productList.add(product);
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+
+		return productList;
+	}
+
 }

@@ -6,9 +6,14 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/formStyle.css" />
+<style>
+	.form-control{
+		margin-bottom: 1rem;
+	}
+</style>
 </head>
 <body>
- <div style="max-width: 500px" class="container mx-auto">
+ <div class="w-500">
  <h1>Add Product</h1>
  <form action="/product/add-product" method="POST" enctype="multipart/form-data">
 	<div class="form-control">
@@ -58,7 +63,7 @@
 		<input class="form-input" type="file" name="image" accept="image/*" required />
 	</div>
 	<div class="form-control">
-		<input class="form-input" type="submit" value="Add Product" />
+		<input class="form-input btn btn-primary" type="submit" value="Add Product" />
 	</div>
 </form>
  </div>

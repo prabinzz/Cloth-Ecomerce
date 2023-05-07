@@ -10,7 +10,7 @@ pageEncoding="ISO-8859-1"%>
 <title>Cloth ecommerse website</title>
 <link rel="stylesheet" href="/css/reset.css" />
 <link rel="stylesheet" href="/css/style.css" />
-<script src="https://kit.fontawesome.com/066c6c8fe9.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/066c6c8fe9.js"></script>
 <style>
 	.product-container{
 		display:flex;
@@ -71,13 +71,25 @@ pageEncoding="ISO-8859-1"%>
 		border: 1px solid #ccc;
 		padding: 5px 10px;
 	}
+	.heading{
+		margin-top: 100px;
+	}
 </style>
 </head>
 <body>
-<%@include file="views/components/navbar.jsp" %>
+<%@include file="/views/components/navbar.jsp" %>
+<%@include file="/views/components/slider.jsp" %>
 <%
-ProductModel productModel = new ProductModel();
-	ArrayList <Product> products = productModel.getAllProducts();
+	ProductModel productModel = new ProductModel();
+	ArrayList <Product> products = new ArrayList <Product>();
+	String searchString = request.getParameter("search");
+	String shortString = request.getParameter("shrot-string");
+	if (searchString != null){
+		products = productModel.searchProduct(searchString);
+	}
+	else{
+		products = productModel.getAllProducts();
+	}
 %>
 
 <div class="container mx-auto"> 

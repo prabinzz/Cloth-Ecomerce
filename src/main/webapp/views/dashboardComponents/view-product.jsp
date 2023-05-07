@@ -43,8 +43,9 @@
 		fill: var(--accent-color);
 	}
 	.product-image{
-		width: 100px;
-		height: 100px;
+		aspect-ratio: 1 / 1;
+		width: 150px;
+		height: 150px;
 	}
 </style>
 </head>
@@ -66,7 +67,7 @@ ArrayList<Product> products = productModel.getAllProducts(); %>
 			<th>Category</th>
 			<th>Gender</th>
 			<th>Controls</th>
-			<th>Image</th>
+			<th style="min-width: 150px;">Image</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -96,7 +97,7 @@ ArrayList<Product> products = productModel.getAllProducts(); %>
 						</div>
 					</div>
 				</td>
-				<td><img class="product-image" src="<%=product.getImage()%>" height="100" width="100" /></td>
+				<td><img class="product-image" src="<%=product.getImage()%>"/></td>
 			</tr>
 		<% 
 			}

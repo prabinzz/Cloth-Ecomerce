@@ -54,29 +54,32 @@ pageEncoding="ISO-8859-1"%>
 </div>
 
 <main style="margin-left: 250px;">
-<%@include file="/views/components/navbar.jsp" %>
-  
-	 <%
-String parameter = request.getParameter("page");
-
-if (parameter != null && parameter.equals("add-product")) {
-    %>
-    <jsp:include page="/views/dashboardComponents/add-product.jsp" />
-    <%
-} else if (parameter != null && parameter.equals("view-products")) {
-    %>
-    <jsp:include page="/views/dashboardComponents/view-product.jsp" />
-    <%
-}else if (parameter != null && parameter.equals("edit-product")) {
-    %>
-    <jsp:include page="/views/dashboardComponents/edit-product.jsp" />
-    <%
-} else {
-    %>
-    <jsp:include page="/views/dashboardComponents/default.jsp" />
-    <%
-}
-%>
+	<jsp:include page="/views/components/navbar.jsp">
+	    <jsp:param name="compact" value="true" />
+	</jsp:include>
+  <div style="margin: 0px 30px;"> 
+		 <%
+	String parameter = request.getParameter("page");
+	
+	if (parameter != null && parameter.equals("add-product")) {
+	    %>
+	    <jsp:include page="/views/dashboardComponents/add-product.jsp" />
+	    <%
+	} else if (parameter != null && parameter.equals("view-products")) {
+	    %>
+	    <jsp:include page="/views/dashboardComponents/view-product.jsp" />
+	    <%
+	}else if (parameter != null && parameter.equals("edit-product")) {
+	    %>
+	    <jsp:include page="/views/dashboardComponents/edit-product.jsp" />
+	    <%
+	} else {
+	    %>
+	    <jsp:include page="/views/dashboardComponents/default.jsp" />
+	    <%
+	}
+	%>
+  </div>
 </main>
 </body>
 </html>
