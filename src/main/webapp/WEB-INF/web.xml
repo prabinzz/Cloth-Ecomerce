@@ -86,7 +86,39 @@
     <servlet-name>Checkout</servlet-name>
     <url-pattern>/checkout</url-pattern>
 </servlet-mapping>
+<servlet>
+    <servlet-name>Error</servlet-name>
+    <servlet-class>controllers.Error</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>Error</servlet-name>
+    <url-pattern>/error</url-pattern>
+</servlet-mapping>
+<servlet>
+    <servlet-name>NotFound</servlet-name>
+    <servlet-class>controllers.NotFound</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>NotFound</servlet-name>
+    <url-pattern>/404</url-pattern>
+</servlet-mapping>
+<servlet>
+    <servlet-name>ViewOrderHistory</servlet-name>
+    <servlet-class>controllers.ViewOrderHistory</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>ViewOrderHistory</servlet-name>
+    <url-pattern>/history</url-pattern>
+</servlet-mapping>
 
+<!-- Exception -->
+<error-page>
+    <location>/error</location>
+</error-page>
+<error-page>
+    <error-code>404</error-code>
+    <location>/404</location>
+</error-page>
 <!-- Filters  -->
 <filter>
     <filter-name>JSPFilter</filter-name>
@@ -95,7 +127,66 @@
 
 <filter-mapping>
     <filter-name>JSPFilter</filter-name>
-    <url-pattern>/*</url-pattern>
+    <url-pattern>/views/*</url-pattern>
 </filter-mapping>
+
+
+
+<filter>
+    <filter-name>UserAreaFilter</filter-name>
+    <filter-class>filter.UserAreaFilter</filter-class>
+</filter>
+
+<filter-mapping>
+    <filter-name>UserAreaFilter</filter-name>
+    <url-pattern>/checkout</url-pattern>
+</filter-mapping>
+<filter-mapping>
+    <filter-name>UserAreaFilter</filter-name>
+    <url-pattern>/checkout</url-pattern>
+</filter-mapping>
+
+<filter-mapping>
+    <filter-name>UserAreaFilter</filter-name>
+    <url-pattern>/checkout</url-pattern>
+</filter-mapping>
+<filter-mapping>
+    <filter-name>UserAreaFilter</filter-name>
+    <url-pattern>/product/add-to-cart</url-pattern>
+</filter-mapping>
+
+
+
+
+<filter>
+    <filter-name>AdminAreaFilter</filter-name>
+    <filter-class>filter.AdminAreaFilter</filter-class>
+</filter>
+
+<filter-mapping>
+    <filter-name>AdminAreaFilter</filter-name>
+    <url-pattern>/dashboard/*</url-pattern>
+</filter-mapping>
+<filter-mapping>
+    <filter-name>AdminAreaFilter</filter-name>
+    <url-pattern>/dashboard</url-pattern>
+</filter-mapping>
+
+<filter-mapping>
+    <filter-name>AdminAreaFilter</filter-name>
+    <url-pattern>/product/delete</url-pattern>
+</filter-mapping>
+<filter-mapping>
+    <filter-name>AdminAreaFilter</filter-name>
+    <url-pattern>/product/add-product</url-pattern>
+</filter-mapping>
+<filter-mapping>
+    <filter-name>AdminAreaFilter</filter-name>
+    <url-pattern>/product/delete</url-pattern>
+</filter-mapping>
+
+
+
+
 
 </web-app>

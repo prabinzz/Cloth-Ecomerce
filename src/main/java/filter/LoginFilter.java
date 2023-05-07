@@ -21,8 +21,8 @@ public class LoginFilter implements Filter {
 			throws IOException, ServletException {
 		HttpSession session = ((HttpServletRequest) request).getSession();
 		if (session.getAttribute("loggedInUserName") != null) {
-			System.out.print(session.getAttribute("loggedInUserName"));
-			((HttpServletResponse) response).sendRedirect("/");
+			((HttpServletResponse) response)
+					.sendRedirect("/error?type=Logged+In+Yser+Area&message=You+need+to+login+to+access+this.");
 		} else {
 			chain.doFilter(request, response);
 		}

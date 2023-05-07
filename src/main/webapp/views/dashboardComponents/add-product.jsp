@@ -44,9 +44,10 @@
 		<label for="category">Category:</label>
 		<select class="form-input" name="category" required>
 			<option value="">Select Category</option>
-			<option value="men">Men</option>
-			 <option value="women">Women</option>
-			 <option value="kids">Kids</option>
+			<option value="Clothing">Clothing</option>
+			 <option value="Footware">Footwear</option>
+			 <option value="Accessories">Accessories</option>
+			 <option value="Others">Others</option>
 		</select>
 	</div>
 	<div class="form-control">

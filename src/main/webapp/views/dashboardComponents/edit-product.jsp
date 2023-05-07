@@ -58,10 +58,11 @@
 	<div class="form-control">
 		<label for="category">Category:</label>
 		<select class="form-input" name="category" required>
-		  <option value="">Select Category</option>
-		  <option value="men" <%= product.getCategory().equals("men") ? "selected" : "" %>>Men</option>
-		  <option value="women" <%= product.getCategory().equals("women") ? "selected" : "" %>>Women</option>
-		  <option value="kids" <%= product.getCategory().equals("kids") ? "selected" : "" %>>Kids</option>
+		  	<option value="">Select Category</option>
+		  	<option value="Clothing" <%= product.getGender().equals("Clothing") ? "selected" : "" %>>Clothing</option>
+			<option value="Footwear" <%= product.getGender().equals("Footwear") ? "selected" : "" %>>Footwear</option>
+			<option value="Accessories" <%= product.getGender().equals("Accessories") ? "selected" : "" %>>Accessories</option>
+			<option value="Others" <%= product.getGender().equals("Others") ? "selected" : "" %>>Others</option>
 		</select>
 	</div>
 	<div class="form-control">

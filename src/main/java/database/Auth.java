@@ -2,6 +2,8 @@ package database;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -120,6 +122,25 @@ public class Auth extends Database {
 			e.printStackTrace();
 		}
 		return 0;
+	}
+
+	public ArrayList<User> getAllUsers() {
+		ArrayList<User> userList = new ArrayList<>();
+		String query = "SELECT * FROM user";
+
+		try (Statement stmt = conn().createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+
+			while (rs.next()) {
+				User user = new User(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+						rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
+
+				userList.add(user);
+			}
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		}
+
+		return userList;
 	}
 
 }

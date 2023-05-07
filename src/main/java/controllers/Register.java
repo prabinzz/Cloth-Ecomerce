@@ -63,6 +63,7 @@ public class Register extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/register");
 		}
 		authModel.register(newUser);
+		response.sendRedirect("/login");
 
 	}
 

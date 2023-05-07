@@ -54,13 +54,15 @@ pageEncoding="ISO-8859-1"%>
 	.product-name{
 		font-size: 1.2rem;
 		font-weight: bold;
+		min-height: 3rem;
 	}
 	.product-description{
 		color: #555;
 		flex-grow: 1;
+		text-overflow: ellipsis;
     	overflow: hidden;
     	text-overflow: ellipsis;
-    	max-width: 100ch;
+    	max-height: 193px;
 	}
 	.product-info{
 		display: flex;

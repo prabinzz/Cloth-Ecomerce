@@ -80,11 +80,13 @@
 		background: #ddd;
 	}
 	.action{
-		padding: 3px 5px;
+		padding: 8px 0px;
+		padding-left: 10px;
 		margin: 5px 0px;
+		border-left: 4px solid var(--accent-color);
 	}
 	.action:hover{
-		color: var(--accent-color);
+		color: var(--accent-color) !important;
 	}
 </style>
 <div class="nav-main w-full">
@@ -166,25 +168,39 @@
 							</div>
 						<% }%>
 						<div class="action">
+							<a href="/history">
+								<i class="fa-solid fa-timeline"></i>
+								<p>View Orders History</p>
+							</a>
+						</div>
+						<div class="action">
 							<a href="/logout">
 								<i class="fa-solid fa-arrow-right-from-bracket action_icon"></i>
 								<p>Log Out</p>
 							</a>
 						</div>
-						
 					</div>
 				</div>
 			</c:otherwise>
 		</c:choose>
 		<script>
 			const searchInput = document.getElementById("search-input");
-	
-			searchInput.addEventListener("input", function() {
+			
+			// focusout if enter is pressed
+			searchInput.addEventListener("keydown", (event) => {
+				  if (event.key === "Enter") {
+				    searchInput.blur();
+				  }
+				});
+			// change url to search url if searchbox looses focus
+			searchInput.addEventListener("focusout", function() {
 			  const searchValue = searchInput.value;
-	
-			  var newUrl = "/?search="+searchValue;
-			  // replace the current URL with the new URL
-			  window.location.href = newUrl;
+			  if(searchValue != ""){
+				  
+				  var newUrl = "/?search="+searchValue;
+				  // replace the current URL with the new URL
+				  window.location.href = newUrl;
+			  }
 			});
 
 			var toggle = (target) => {

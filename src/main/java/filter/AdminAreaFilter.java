@@ -12,19 +12,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import database.Auth;
+import model.User;
+
 /**
  * Servlet Filter implementation class LoginFilter
  */
-public class UserAreaFilter implements Filter {
+public class AdminAreaFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpSession session = ((HttpServletRequest) request).getSession();
-		if (session.getAttribute("loggedInUserName") != null) {
-			chain.doFilter(request, response);
-		} else {
-			((HttpServletResponse) response).sendRedirect("/login");
+		String loggedInUserName = (String) session.getAttribute("loggedInUserName");
+		if (loggedInUserName != null) {
+			Auth authModel = new Auth();
+			User loggedInUser = authModel.getUserWithUserName(loggedInUserName);
+			if (loggedInUser.getAccountType().equals("admin")) {
+				chain.doFilter(request, response);
+			}
 		}
+		((HttpServletResponse) response)
+				.sendRedirect("/error?type=Admin+Area&message=You+need+to-login-as-admin-to-access-this.");
 	}
 
 	public void destroy() {

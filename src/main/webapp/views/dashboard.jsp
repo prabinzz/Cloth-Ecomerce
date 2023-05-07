@@ -5,8 +5,7 @@ pageEncoding="ISO-8859-1"%>
 <head>
 <meta charset="ISO-8859-1">
 <title>Dashboard</title>
-<link rel="stylesheet" href="/css/reset.css" />
-<link rel="stylesheet" href="/css/style.css" />
+<jsp:include page="/views/components/globelHead.jsp" />
 <style type="text/css">
 .sidebar {
   width: 250px;
@@ -49,7 +48,7 @@ pageEncoding="ISO-8859-1"%>
     <li><a href="/dashboard?page=view-products">View Products</a></li>
     <li><a href="/dashboard?page=edit-product">Edit Products</a></li>
     <li><a href="/dashboard?page=add-product">Add Product</a></li>
-    <li><a href="/dashboard?page=view-orders">View Orders</a></li>
+    <li><a href="/dashboard?page=view-order">View Orders</a></li>
   </ul>
 </div>
 
@@ -57,6 +56,7 @@ pageEncoding="ISO-8859-1"%>
 	<jsp:include page="/views/components/navbar.jsp">
 	    <jsp:param name="compact" value="true" />
 	</jsp:include>
+	
   <div style="margin: 0px 30px;"> 
 		 <%
 	String parameter = request.getParameter("page");
@@ -72,6 +72,10 @@ pageEncoding="ISO-8859-1"%>
 	}else if (parameter != null && parameter.equals("edit-product")) {
 	    %>
 	    <jsp:include page="/views/dashboardComponents/edit-product.jsp" />
+	    <%
+	} else if (parameter != null && parameter.equals("view-order")) {
+	    %>
+	    <jsp:include page="/views/dashboardComponents/view-order.jsp" />
 	    <%
 	} else {
 	    %>
