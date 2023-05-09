@@ -95,6 +95,14 @@
     <url-pattern>/error</url-pattern>
 </servlet-mapping>
 <servlet>
+    <servlet-name>Success</servlet-name>
+    <servlet-class>controllers.Success</servlet-class>
+</servlet>
+<servlet-mapping>
+    <servlet-name>Success</servlet-name>
+    <url-pattern>/success</url-pattern>
+</servlet-mapping>
+<servlet>
     <servlet-name>NotFound</servlet-name>
     <servlet-class>controllers.NotFound</servlet-class>
 </servlet>
@@ -112,9 +120,6 @@
 </servlet-mapping>
 
 <!-- Exception -->
-<error-page>
-    <location>/error</location>
-</error-page>
 <error-page>
     <error-code>404</error-code>
     <location>/404</location>
@@ -136,15 +141,6 @@
     <filter-name>UserAreaFilter</filter-name>
     <filter-class>filter.UserAreaFilter</filter-class>
 </filter>
-
-<filter-mapping>
-    <filter-name>UserAreaFilter</filter-name>
-    <url-pattern>/checkout</url-pattern>
-</filter-mapping>
-<filter-mapping>
-    <filter-name>UserAreaFilter</filter-name>
-    <url-pattern>/checkout</url-pattern>
-</filter-mapping>
 
 <filter-mapping>
     <filter-name>UserAreaFilter</filter-name>

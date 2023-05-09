@@ -31,6 +31,7 @@ pageEncoding="ISO-8859-1"%>
 		box-shadow: 0px 1px 14px 5px rgba(0,0,0,0.08);
 	}
 	.product-card:hover{
+		border: 2px solid var(--accent-color);
 		box-shadow: 0px 1px 14px 5px rgba(0,0,0,0.15);
 	}
 	.product-card > img{

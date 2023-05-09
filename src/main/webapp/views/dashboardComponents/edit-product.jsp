@@ -80,7 +80,7 @@
 	    <img id="preview" src="<%=product.getImage() %>" alt="Preview Image" style="display:none; max-width:100px; max-height:100px;" />
 	</div>
 	<div class="form-control">
-		<input class="form-input btn btn-primary" type="submit" value="Add Product" />
+		<input class="form-input btn btn-primary" type="submit" value="Edit Product" />
 	</div>
 </form>
 	<%} %>

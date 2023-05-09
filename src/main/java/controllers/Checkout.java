@@ -49,6 +49,7 @@ public class Checkout extends HttpServlet {
 				order.addOrderItem(orderItem);
 			}
 			orderModel.addOrder(order);
+			response.sendRedirect("/success/?type=Purchased+Successfully&message=Thank+you+for+purchasing.");
 		}
 	}
 

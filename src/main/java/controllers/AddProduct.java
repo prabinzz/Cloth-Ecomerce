@@ -52,11 +52,6 @@ public class AddProduct extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		if (error != "") {
-			session.setAttribute("errorMessage", error);
-			response.sendRedirect(request.getContextPath() + "/register");
-		}
 		productModel.addProduct(NewProduct);
 		response.sendRedirect("/dashboard?page=add-product");
 

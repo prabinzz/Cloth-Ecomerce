@@ -19,10 +19,11 @@ public class UserAreaFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		HttpSession session = ((HttpServletRequest) request).getSession();
+		HttpSession session = ((HttpServletRequest) request).getSession(true);
 		if (session.getAttribute("loggedInUserName") != null) {
 			chain.doFilter(request, response);
 		} else {
+			session.setAttribute("errorMessage", "Login First to access this feature.");
 			((HttpServletResponse) response).sendRedirect("/login");
 		}
 	}

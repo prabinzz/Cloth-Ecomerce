@@ -143,7 +143,9 @@
 							</div>
 							
 						<% }%>
+						<a href="/checkout">
 							<div class="purchase"> <input type="button" class="btn btn-primary" value="Purchase"/></div>
+						</a>
 						<%}else{ %>
 							<div> Your Cart is empty.</div>
 							<%} %>

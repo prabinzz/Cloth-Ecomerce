@@ -29,10 +29,14 @@ public class AdminAreaFilter implements Filter {
 			User loggedInUser = authModel.getUserWithUserName(loggedInUserName);
 			if (loggedInUser.getAccountType().equals("admin")) {
 				chain.doFilter(request, response);
+			} else {
+				session.setAttribute("errorMessage", "Login First to access this feature.");
+				((HttpServletResponse) response).sendRedirect("/login");
 			}
+		} else {
+			session.setAttribute("errorMessage", "Login First to access this feature.");
+			((HttpServletResponse) response).sendRedirect("/login");
 		}
-		((HttpServletResponse) response)
-				.sendRedirect("/error?type=Admin+Area&message=You+need+to-login-as-admin-to-access-this.");
 	}
 
 	public void destroy() {
